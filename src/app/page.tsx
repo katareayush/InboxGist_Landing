@@ -2,11 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Zap,
   Shield,
   LineChart,
 } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 interface FeatureCardProps {
   title: string;
@@ -17,6 +19,8 @@ interface FeatureCardProps {
 interface YouTubeEmbedProps {
   videoId: string;
 }
+
+
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon }) => (
   <div className="p-6 bg-gray-50 rounded-lg transition-transform hover:scale-105">
@@ -59,6 +63,7 @@ const StepCard: React.FC<StepCardProps> = ({ number, title, description }) => (
 );
 
 const Home: React.FC = () => {
+  const router = useRouter();
   const features = [
     {
       title: "Lightning Fast",
@@ -81,7 +86,7 @@ const Home: React.FC = () => {
     {
       number: 1,
       title: "Install the Extension",
-      description: "Add Inbox Gist to your browser with just one click. Available for Chrome, Firefox, and Safari."
+      description: "Add Inbox Gist to your browser with just one click. Available for Chrome."
     },
     {
       number: 2,
@@ -107,7 +112,7 @@ const Home: React.FC = () => {
             <div className="flex items-center space-x-4">
               <Link href="#features" className="text-gray-600 hover:text-indigo-600">Features</Link>
               <Link href="#how-it-works" className="text-gray-600 hover:text-indigo-600">How it Works</Link>
-              <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+              <button onClick={()=>{router.push(`https://chromewebstore.google.com/detail/inboxgist-summarize-any-e/hmlfldbomclhfbbnokfnjihonhebhpol`)}} className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
                 Add to Browser
               </button>
             </div>
@@ -126,10 +131,10 @@ const Home: React.FC = () => {
               Get instant AI-powered summaries of your emails. Save time and stay focused on what matters most.
             </p>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <button className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition duration-300 text-lg font-semibold">
+              <button onClick={()=>{router.push(`https://chromewebstore.google.com/detail/inboxgist-summarize-any-e/hmlfldbomclhfbbnokfnjihonhebhpol`)}} className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition duration-300 text-lg font-semibold">
                 Install Now - It's Free
               </button>
-              <button className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg hover:bg-indigo-50 transition duration-300 text-lg font-semibold">
+              <button onClick={()=>{router.push(`https://www.youtube.com/watch?v=JSbY58Czj_I`)}} className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg hover:bg-indigo-50 transition duration-300 text-lg font-semibold">
                 Watch Demo
               </button>
             </div>
@@ -170,53 +175,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-indigo-600 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to Simplify Your Inbox?
-          </h2>
-          <p className="text-xl text-indigo-100 mb-8">
-            Join thousands of professionals who save hours every week with Inbox Gist.
-          </p>
-          <button className="bg-white text-indigo-600 px-8 py-4 rounded-lg hover:bg-indigo-50 transition duration-300 text-lg font-semibold">
-            Get Started - It's Free
-          </button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-2xl font-bold mb-4">Inbox Gist</h3>
-            <p className="text-gray-400">Email summaries that save you time.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Product</h4>
-            <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">Features</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Pricing</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">FAQ</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">About</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Blog</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-400 hover:text-white">Privacy</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white">Terms</Link></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </main>
   );
 };
