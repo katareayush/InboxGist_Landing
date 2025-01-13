@@ -1,12 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   Zap,
   Shield,
   LineChart,
+  Menu,
+  X
 } from 'lucide-react';
 import Footer from '@/components/Footer';
 
@@ -19,8 +21,6 @@ interface FeatureCardProps {
 interface YouTubeEmbedProps {
   videoId: string;
 }
-
-
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon }) => (
   <div className="p-6 bg-gray-50 rounded-lg transition-transform hover:scale-105">
@@ -64,6 +64,8 @@ const StepCard: React.FC<StepCardProps> = ({ number, title, description }) => (
 
 const Home: React.FC = () => {
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const features = [
     {
       title: "Lightning Fast",
@@ -109,14 +111,66 @@ const Home: React.FC = () => {
             <div className="flex items-center">
               <span className="text-2xl font-bold text-indigo-600">InboxGist</span>
             </div>
-            <div className="flex items-center space-x-4">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-4">
               <Link href="#features" className="text-gray-600 hover:text-indigo-600">Features</Link>
               <Link href="#how-it-works" className="text-gray-600 hover:text-indigo-600">How it Works</Link>
-              <button onClick={()=>{router.push(`https://chromewebstore.google.com/detail/inboxgist-summarize-any-e/hmlfldbomclhfbbnokfnjihonhebhpol`)}} className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+              <button 
+                onClick={() => {router.push(`https://chromewebstore.google.com/detail/inboxgist-summarize-any-e/hmlfldbomclhfbbnokfnjihonhebhpol`)}}
+                className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+              >
                 Add to Browser
               </button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-600 hover:text-indigo-600 focus:outline-none"
+              >
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="md:hidden">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <Link
+                  href="#features"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Features
+                </Link>
+                <Link
+                  href="#how-it-works"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  How it Works
+                </Link>
+                <div className="px-3 py-2">
+                  <button
+                    onClick={() => {
+                      router.push(`https://chromewebstore.google.com/detail/inboxgist-summarize-any-e/hmlfldbomclhfbbnokfnjihonhebhpol`);
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+                  >
+                    Add to Browser
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -131,10 +185,16 @@ const Home: React.FC = () => {
               Get instant AI-powered summaries of your emails. Save time and stay focused on what matters most.
             </p>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <button onClick={()=>{router.push(`https://chromewebstore.google.com/detail/inboxgist-summarize-any-e/hmlfldbomclhfbbnokfnjihonhebhpol`)}} className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition duration-300 text-lg font-semibold">
+              <button 
+                onClick={() => {router.push(`https://chromewebstore.google.com/detail/inboxgist-summarize-any-e/hmlfldbomclhfbbnokfnjihonhebhpol`)}}
+                className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition duration-300 text-lg font-semibold"
+              >
                 Install Now - It's Free
               </button>
-              <button onClick={()=>{router.push(`https://www.youtube.com/watch?v=JSbY58Czj_I`)}} className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg hover:bg-indigo-50 transition duration-300 text-lg font-semibold">
+              <button 
+                onClick={() => {router.push(`https://www.youtube.com/watch?v=JSbY58Czj_I`)}}
+                className="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-lg hover:bg-indigo-50 transition duration-300 text-lg font-semibold"
+              >
                 Watch Demo
               </button>
             </div>
