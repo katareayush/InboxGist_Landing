@@ -25,6 +25,13 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
                             </a>
                         </div>
                     </div>
+
+                    <div className="col-span-1">
+                        <h3 className="text-lg font-bold mb-6 text-gray-900">Quick Links</h3>
+                        <ul className="space-y-4">
+                            <li><a href="https://docs.google.com/document/d/1vo-4yJznlLuXlAoogZJ1lnfNo6hJqwm-SXY44WJksvo/edit?tab=t.0#heading=h.5449ymuasv26" target='blank' className="text-gray-600 hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
+                        </ul>
+                    </div>
           
 
                     <div className="col-span-1">
