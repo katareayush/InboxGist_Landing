@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { Github, Twitter, Linkedin, Mail, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
@@ -6,6 +7,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ className }) => {
+    const router = useRouter();
     return (
         <footer className=" mt-auto ">
             <div className="container mx-auto py-16 px-12 " id="contact">
@@ -29,7 +31,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
                     <div className="col-span-1">
                         <h3 className="text-lg font-bold mb-6 text-gray-900">Quick Links</h3>
                         <ul className="space-y-4">
-                            <li><a href="https://docs.google.com/document/d/1vo-4yJznlLuXlAoogZJ1lnfNo6hJqwm-SXY44WJksvo/edit?tab=t.0#heading=h.5449ymuasv26" target='blank' className="text-gray-600 hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
+                            <button onClick={()=>{router.push("/privacy-policy")}} className="text-gray-600 hover:text-indigo-600 transition-colors">Privacy Policy</button>
                         </ul>
                     </div>
           
