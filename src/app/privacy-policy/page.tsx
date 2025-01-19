@@ -82,6 +82,14 @@ const PrivacyPolicy = () => {
             </section>
 
             <section className="mb-8">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">6. User Control and Consent</h2>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+                <li>We do not store, share, or sell any user data retrieved through Gmail API or Google OAuth..</li>
+                <li>Explicit Affirmation: Google Workspace APIs are not used to develop, improve, or train generalized AI and/or ML models.</li>
+              </ul>
+            </section>
+
+            <section className="mb-8">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">7. Changes to This Privacy Policy</h2>
               <p className="text-gray-600">
                 We may update this Privacy Policy from time to time. Any changes will be posted on this page, and the effective date will be updated accordingly.
